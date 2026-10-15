@@ -1,3 +1,21 @@
+# ICS TP3 - 2026
+Estrategia de ramas
+
+- `main`: versión estable (producción).
+- `development`: integración del trabajo en curso.
+- `feature/nombre-funcionalidad`: nuevas funcionalidades, salen de `development`.
+- `hotfix/descripcion`: correcciones urgentes.
+
+No se permite hacer commits directos sobre `main` ni `development`.
+
+
+
+
+
+
+
+
+# DSW
 # Trabajo Práctico Integrador
 ## Desarrollo de Software
 ### Backend
