@@ -158,11 +158,13 @@ namespace Dsw2025Tpi.Data.Migrations
 
             modelBuilder.Entity("Dsw2025Tpi.Domain.Entities.Order", b =>
                 {
-                    b.HasOne("Dsw2025Tpi.Domain.Entities.Customer", null)
+                    b.HasOne("Dsw2025Tpi.Domain.Entities.Customer", "Customer")
                         .WithMany("Orders")
                         .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.Navigation("Customer");
                 });
 
             modelBuilder.Entity("Dsw2025Tpi.Domain.Entities.OrderItem", b =>
