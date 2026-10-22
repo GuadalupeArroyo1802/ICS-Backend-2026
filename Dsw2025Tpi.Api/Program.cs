@@ -144,8 +144,9 @@ public class Program
         }
         
         app.UseSwagger(); 
-        app.UseSwaggerUI(); 
-        
+        app.UseSwaggerUI();
+
+        // pruebwa de cors
 
         app.UseHttpsRedirection(); 
 
