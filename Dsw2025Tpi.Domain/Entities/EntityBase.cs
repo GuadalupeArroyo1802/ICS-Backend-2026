@@ -11,4 +11,4 @@ namespace Dsw2025Tpi.Domain.Entities
     }
 }
     public Guid Id { get; set; }
-}
+
