@@ -67,8 +67,7 @@ public class Program
         builder.Services.AddDbContext<Dsw2025TpiContext>(options =>
         {
 
-            options.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=Dsw2025TpiDB;Integrated Security=True");
-
+            options.UseSqlServer(builder.Configuration.GetConnectionString("Dsw2025TpiEntities"));
         });
         builder.Services.AddHealthChecks();
 
@@ -145,8 +144,9 @@ public class Program
         }
         
         app.UseSwagger(); 
-        app.UseSwaggerUI(); 
-        
+        app.UseSwaggerUI();
+
+        // pruebwa de cors
 
         app.UseHttpsRedirection(); 
 
