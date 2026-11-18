@@ -15,7 +15,7 @@ public class ProductsManagementService : IProductsManagementService
 
     public ProductsManagementService(IRepository repository)
     {
-        _repository = repository; // inyeccion de dependencia del repositorio, para poder utilizar los metodos que implementa
+        _repository = repository;
     }
 
     public async Task<ProductModel.ProductResponseUpdate>? GetProductById(Guid id)
@@ -35,27 +35,28 @@ public class ProductsManagementService : IProductsManagementService
         );
     }
 
-    // Nuevo: método que soporta filtrado por status, búsqueda por nombre y paginación (copia de la imagen)
     public async Task<ProductModel.ResponsePagination?> GetProducts(ProductModel.FilterProduct request)
     {
-        // Convertir el status textual a bool? (null = no filtrar por estado)
         bool? isActive = request?.Status == "enabled"
             ? (bool?)true
             : request?.Status == "disabled"
                 ? (bool?)false
                 : null;
 
-        // Consulta al repositorio con predicado (GetFiltered está diseñado para traducir a EF cuando sea posible)
         var search = request?.Search ?? string.Empty;
+        var searchLower = search.ToLower();
+
         var matched = await _repository.GetFiltered<Product>(p =>
             (isActive == null || p.IsActive == isActive) &&
-            (string.IsNullOrEmpty(search) || p.Name.Contains(search))
+            (string.IsNullOrEmpty(searchLower) ||
+                (p.Name != null && p.Name.ToLower().Contains(searchLower)) ||
+                (p.Sku != null && p.Sku.ToLower().Contains(searchLower)) ||
+                (p.InternalCode != null && p.InternalCode.ToLower().Contains(searchLower)))
         );
 
         if (matched is null || !matched.Any())
             throw new EntityNotFoundException("No products were found");
 
-        // Proyección a DTO intermedio
         var productsQuery = matched
             .Select(p => new ProductModel.ProductResponse(
                 p.Id,
@@ -69,7 +70,6 @@ public class ProductsManagementService : IProductsManagementService
             ))
             .OrderBy(p => p.Sku);
 
-        // Paginación segura con valores por defecto
         var pageNumber = request?.PageNumber <= 0 ? 1 : (request?.PageNumber ?? 1);
         var pageSize = request?.PageSize <= 0 ? matched.Count() : (request?.PageSize ?? matched.Count());
 
@@ -107,7 +107,7 @@ public class ProductsManagementService : IProductsManagementService
             string.IsNullOrWhiteSpace(request.InternalCode) ||
             string.IsNullOrWhiteSpace(request.Description) ||
             string.IsNullOrWhiteSpace(request.Name) ||
-            request.StockQuantity < 0)
+            request.StockQuantity <= 0)
         {
             throw new ArgumentException("Valores de stock, para el producto, no validos");
         }
