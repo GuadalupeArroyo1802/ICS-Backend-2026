@@ -22,6 +22,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dsw2025Tpi.UnitTests", "tes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dsw2025Tpi.IntegrationTests", "tests\Dsw2025Tpi.IntegrationTests\Dsw2025Tpi.IntegrationTests.csproj", "{7C1B831F-4642-46FA-A95C-3CA94FD71D14}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dsw2025Tpi.UnitTests", "Dsw2025Tpi.UnitTests\Dsw2025Tpi.UnitTests.csproj", "{F4087E23-2CA6-4BE3-91AF-92B999EC2F45}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -104,6 +106,18 @@ Global
 		{7C1B831F-4642-46FA-A95C-3CA94FD71D14}.Release|x64.Build.0 = Release|Any CPU
 		{7C1B831F-4642-46FA-A95C-3CA94FD71D14}.Release|x86.ActiveCfg = Release|Any CPU
 		{7C1B831F-4642-46FA-A95C-3CA94FD71D14}.Release|x86.Build.0 = Release|Any CPU
+		{F4087E23-2CA6-4BE3-91AF-92B999EC2F45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4087E23-2CA6-4BE3-91AF-92B999EC2F45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4087E23-2CA6-4BE3-91AF-92B999EC2F45}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F4087E23-2CA6-4BE3-91AF-92B999EC2F45}.Debug|x64.Build.0 = Debug|Any CPU
+		{F4087E23-2CA6-4BE3-91AF-92B999EC2F45}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F4087E23-2CA6-4BE3-91AF-92B999EC2F45}.Debug|x86.Build.0 = Debug|Any CPU
+		{F4087E23-2CA6-4BE3-91AF-92B999EC2F45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4087E23-2CA6-4BE3-91AF-92B999EC2F45}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4087E23-2CA6-4BE3-91AF-92B999EC2F45}.Release|x64.ActiveCfg = Release|Any CPU
+		{F4087E23-2CA6-4BE3-91AF-92B999EC2F45}.Release|x64.Build.0 = Release|Any CPU
+		{F4087E23-2CA6-4BE3-91AF-92B999EC2F45}.Release|x86.ActiveCfg = Release|Any CPU
+		{F4087E23-2CA6-4BE3-91AF-92B999EC2F45}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
