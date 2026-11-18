@@ -71,8 +71,8 @@ namespace Dsw2025Tpi.UnitTests
 
             // Assert
             Assert.NotNull(result);
-            Assert.Equal(45000m, result.TotalAmount);
-            Assert.Equal(7, product.StockQuantity);
+            Assert.Equal(45000m, result.TotalAmount); // 3 * 15000
+            Assert.Equal(7, product.StockQuantity);    // 10 - 3
 
             _repositoryMock.Verify(r => r.Update(It.Is<Product>(p => p.Id == productId && p.StockQuantity == 7)), Times.Once);
             _repositoryMock.Verify(r => r.Add(It.IsAny<Order>()), Times.Once);
@@ -117,7 +117,7 @@ namespace Dsw2025Tpi.UnitTests
             // Act & Assert
             var ex = await Assert.ThrowsAsync<ArgumentException>(() => _service.AddOrder(request));
             Assert.Contains("suficiente stock", ex.Message, StringComparison.OrdinalIgnoreCase);
-            Assert.Equal(2, product.StockQuantity);
+            Assert.Equal(2, product.StockQuantity); // El stock no debe alterarse
 
             _repositoryMock.Verify(r => r.Update(It.IsAny<Product>()), Times.Never);
             _repositoryMock.Verify(r => r.Add(It.IsAny<Order>()), Times.Never);
@@ -152,4 +152,4 @@ namespace Dsw2025Tpi.UnitTests
             _repositoryMock.Verify(r => r.Add(It.IsAny<Order>()), Times.Never);
         }
     }
-}
+}  
