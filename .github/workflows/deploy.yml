@@ -12,12 +12,32 @@ permissions:
 
 env:
   DOTNET_VERSION: '8.0.x'
+  SOLUTION_PATH: 'Dsw2025Tpi.sln'
   PROJECT_PATH: 'Dsw2025Tpi.Api/Dsw2025Tpi.Api.csproj'
   AZURE_WEBAPP_NAME: 'web-app-ics2026'
 
 jobs:
+  test:
+    name: Quality Gate - Ejecutar Pruebas
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar el código
+        uses: actions/checkout@v4
+
+      - name: Instalar .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Restaurar dependencias de la solución
+        run: dotnet restore ${{ env.SOLUTION_PATH }}
+
+      - name: Ejecutar suite de pruebas (Unitarias e Integración)
+        run: dotnet test ${{ env.SOLUTION_PATH }} --no-restore --verbosity normal
+
   build:
     name: Restaurar, compilar y empaquetar
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - name: Descargar el código
