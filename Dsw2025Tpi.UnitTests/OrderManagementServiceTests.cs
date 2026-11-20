@@ -25,6 +25,8 @@ namespace Dsw2025Tpi.UnitTests
         [Fact]
         public async Task CreateOrder_WithValidItemsAndStock_CalculatesTotalAndDecrementsProductStock()
         {
+         
+            
             // Arrange
             var customerId = Guid.NewGuid();
             var productId = Guid.NewGuid();
