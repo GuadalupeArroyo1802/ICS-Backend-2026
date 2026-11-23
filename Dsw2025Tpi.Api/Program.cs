@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Dsw2025Tpi.Application.Services;
-
+using Dsw2025Tpi.Api;
 
 
 namespace Dsw2025Tpi.Api;
